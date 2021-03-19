@@ -71,7 +71,7 @@ public class Polinomio {
     }
 
     private void cambiarCapacidad(int nc) {
-        if (nc > 1 && nc >= n) {
+        if (nc > 1 && nc >= 2 * n) {
             double[] nuevoVector = new double[nc];
 
             for (int i = 0; i < 2 * n; i++) {
