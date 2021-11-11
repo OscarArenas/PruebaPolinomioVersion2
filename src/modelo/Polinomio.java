@@ -41,7 +41,7 @@ public class Polinomio {
         }
         int i = 2 * n - 1;
 
-        while (i > 0 && exponente < datos[i]) {
+        while (i > 0 && exponente > datos[i]) {
             datos[i + 2] = datos[i];
             datos[i + 1] = datos[i - 1];
             i -= 2;
@@ -83,7 +83,7 @@ public class Polinomio {
 
     public boolean contiene(int exponente) {
         int i = 0;
-        while (i < n && datos[2 * i + 1] < exponente) {
+        while (i < n && datos[2 * i + 1] > exponente) {
             i++;
         }
         return i < n && datos[2 * i + 1] == exponente;
@@ -100,22 +100,28 @@ public class Polinomio {
     public String toString() {
         String cadena = "";
 
-        for (int i = 0; i < n; i++) {
-            int k = 2 * i;
+        if (n > 0) {
+            int k = 0;
             double coeficiente = datos[k];
             int exponente = (int) datos[k + 1];
             String signo = "";
+            if (coeficiente < 0) {
+                signo = "-";
+            }
+            cadena += signo + convertirTermino(coeficiente, exponente);
 
-            if (i != n - 1) {
+            for (int i = 1; i < n; i++) {
+                k = 2 * i;
+                coeficiente = datos[k];
+                exponente = (int) datos[k + 1];
+
                 if (coeficiente < 0) {
                     signo = " - ";
                 } else {
                     signo = " + ";
                 }
-            } else if (coeficiente < 0) {
-                signo = "-";
+                cadena += signo + convertirTermino(coeficiente, exponente);
             }
-            cadena = signo + convertirTermino(coeficiente, exponente) + cadena;
         }
         return cadena;
     }
