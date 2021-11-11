@@ -54,7 +54,7 @@ public class Polinomio {
     }
 
     public boolean eliminar(int exponente) {
-        for (int i = 1; i < 2 * n; i = i + 2) {
+        for (int i = 1; i < 2 * n && exponente <= datos[i]; i = i + 2) {
             if (exponente == datos[i]) {
                 n--;
                 for (int j = i; j < 2 * n; j = j + 2) {
